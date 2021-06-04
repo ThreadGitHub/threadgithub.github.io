@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+    <link rel="icon" href="">
+  
+    
+  <title>java线程-生产者消费者问题 | Thread丶</title>
+  
+<link rel="stylesheet" href="/style.css">
+
+  
+<link rel="stylesheet" href="/lib/jquery.fancybox.min.css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <header>
+  <div class="header-container">
+    <a class='logo' href="/">
+      <span>Thread丶</span>
+    </a>
+    <ul class="right-header">
+      
+        <li class="nav-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/about" class="item-link">关于</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/archives" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/tags" class="item-link">标签</a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  <main id='post'>
+  <div class="content">
+    <article>
+        <section class="content markdown-body">
+          <h1>java线程-生产者消费者问题</h1>
+          <div class='post-meta'>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2021年06月04日</time>
+            
+              | <i class="fa fa-folder-open-o" aria-hidden="true"></i> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+
+
+            
+            
+              | 
+                  <i class="fa fa-tag" aria-hidden="true"></i>
+                
+               
+  <a href="/tags/#java" class='tag'>java</a>
+
+
+            
+          </div>
+          <h5 id="馒头实体类"><a href="#馒头实体类" class="headerlink" title="馒头实体类"></a>馒头实体类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> thread;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 馒头类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ManTou</span></span>&#123;</span><br><span class="line">	<span class="comment">//馒头id</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ManTou</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;ManTou [id=&quot;</span> + id + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="生产者类"><a href="#生产者类" class="headerlink" title="生产者类"></a>生产者类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> thread;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 生产者类 生产馒头</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Producer</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> SyncStack syncStack = <span class="keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Producer</span><span class="params">(SyncStack syncStack)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.syncStack = syncStack;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">20</span>;i++)&#123;</span><br><span class="line">			syncStack.push(<span class="keyword">new</span> ManTou(i));	<span class="comment">//加馒头</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep((<span class="keyword">int</span>)(Math.random() * <span class="number">1000</span>));</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="消费者类"><a href="#消费者类" class="headerlink" title="消费者类"></a>消费者类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> thread;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 消费者类 吃馒头</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> SyncStack syncStack = <span class="keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Consumer</span><span class="params">(SyncStack syncStack)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.syncStack = syncStack;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">20</span>;i++)&#123;</span><br><span class="line">			syncStack.get();	<span class="comment">//吃馒头</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep((<span class="keyword">int</span>)(Math.random() * <span class="number">1000</span>));</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="生产者和消费者的栈"><a href="#生产者和消费者的栈" class="headerlink" title="生产者和消费者的栈"></a>生产者和消费者的栈</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> thread;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 生产者和消费者的栈  先生产的馒头后吃 先进后出</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SyncStack</span></span>&#123;</span><br><span class="line">	<span class="comment">//当前馒头的索引</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//盛放馒头的框 最多生产5个馒头</span></span><br><span class="line">	<span class="keyword">private</span> ManTou[] array = <span class="keyword">new</span> ManTou[<span class="number">5</span>];</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//线程同步加馒头 一个线程在加馒头的时候 别的线程需要排队</span></span><br><span class="line">	<span class="function"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(ManTou manTou)</span></span>&#123;</span><br><span class="line"><span class="comment">/*if*/</span><span class="keyword">while</span>(index == array.length &amp;&amp; array.length == index)&#123;</span><br><span class="line">			<span class="comment">//System.out.println(&quot;满了&quot;);</span></span><br><span class="line">			<span class="comment">//如果当前要生产馒头的人发现馒头满了 如果return 这个人这个人生产的馒头就作废了，</span></span><br><span class="line">			<span class="comment">//可能导致几个人吃不到馒头，</span></span><br><span class="line"><span class="comment">//			return;	</span></span><br><span class="line">			</span><br><span class="line">			<span class="comment">//所以正确的方法是等着等到放馒头的栈没满的时候再做馒头</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">this</span>.wait();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//如果发现当前对象上有正在睡着的线程就叫醒他 让他不要再等了 接着排队做馒头 叫醒自己  </span></span><br><span class="line">		<span class="keyword">this</span>.notify();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//叫醒这个对象上所有正在睡着的线程</span></span><br><span class="line">		<span class="comment">//this.notifyAll();</span></span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">&quot;生产了:&quot;</span> + manTou);</span><br><span class="line">		</span><br><span class="line">		array[index] = manTou;</span><br><span class="line">		index++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//线程同步方法  线程必须 排队吃馒头  (一个线程吃着馒头别的线程要只能看着)</span></span><br><span class="line">	<span class="function"><span class="keyword">synchronized</span> ManTou <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="comment">//这个位置判断是不是吃没了为什么不用if 而用while，</span></span><br><span class="line">		<span class="comment">//因为当前线程醒过来的时候 他不一定 有馒头吃 说不定此时馒头刚好被另一个线程吃完了</span></span><br><span class="line">		<span class="comment">//必须要当前线程被叫醒后 要 不断的去判断自己现在的馒头数是否有的吃 </span></span><br><span class="line">		<span class="comment">//如果有才可以吃  不然 馒头吃完了到0了 接着往下 0-- = -1 就越界了</span></span><br><span class="line"><span class="comment">/*if*/</span><span class="keyword">while</span>(index == <span class="number">0</span>)&#123;</span><br><span class="line"></span><br><span class="line">			<span class="comment">//System.out.println(&quot;吃没了&quot;);</span></span><br><span class="line"><span class="comment">//			return null;</span></span><br><span class="line">			</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">this</span>.wait();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">this</span>.notify();</span><br><span class="line">		</span><br><span class="line">		index--;</span><br><span class="line">		System.out.println(<span class="string">&quot;消费了:&quot;</span> + array[index]);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> array[index];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadProducerConsumer</span> </span>&#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 线程 生产者和消费者问题</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SyncStack syncStack = <span class="keyword">new</span> SyncStack();</span><br><span class="line"><span class="comment">//		</span></span><br><span class="line"><span class="comment">//		for(int i = 0;i &lt; 20;i++)&#123;</span></span><br><span class="line"><span class="comment">//			syncStack.push(new ManTou(i));</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line"><span class="comment">//		</span></span><br><span class="line"><span class="comment">//		System.out.println(syncStack.array);</span></span><br><span class="line"><span class="comment">//		</span></span><br><span class="line"><span class="comment">//		for(int i = 0;i &lt; 20;i++)&#123;</span></span><br><span class="line"><span class="comment">//			syncStack.get();</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line"><span class="comment">//		</span></span><br><span class="line"><span class="comment">//		System.out.println(syncStack.array);</span></span><br><span class="line"><span class="comment">//		</span></span><br><span class="line"><span class="comment">//		for(int i = 10;i &lt; 20;i++)&#123;</span></span><br><span class="line"><span class="comment">//			syncStack.push(new ManTou(i));</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line"><span class="comment">//		</span></span><br><span class="line"><span class="comment">//		System.out.println(syncStack.array);</span></span><br><span class="line">		</span><br><span class="line">		Producer producer = <span class="keyword">new</span> Producer(syncStack);</span><br><span class="line">		Consumer consumer = <span class="keyword">new</span> Consumer(syncStack);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">new</span> Thread(producer).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(producer).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(producer).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(consumer).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(consumer).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(consumer).start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </section>
+    </article>
+    
+        
+  </div>
+  <aside>
+    
+    <div class="toc-container">
+        <h1>目录</h1>
+        <div class="content">
+            <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A6%92%E5%A4%B4%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">馒头实体类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text">生产者类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">消费者类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%E7%9A%84%E6%A0%88"><span class="toc-number">4.</span> <span class="toc-text">生产者和消费者的栈</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%B1%BB"><span class="toc-number">5.</span> <span class="toc-text">测试类</span></a></li></ol>
+        </div>
+    </div>
+    
+  </aside>
+</main>
+
+
+
+  <footer>
+  <div class="copyright">
+    <div>
+      &copy; 2021 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>&nbsp
+    </div>
+    <div>
+      Theme by <a href="https://github.com/lewis-geek/hexo-theme-Aath" target="_blank">Aath</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="/lib/in-view.min.js"></script>
+
+
+<script src="/lib/lodash.min.js"></script>
+
+<script>
+  var isDown = true
+  var oldY = 0
+  inView.offset(50)
+
+  document.body.addEventListener('touchstart', function(){});
+  
+  window.addEventListener('scroll', _.throttle(e => {
+    var currentY = window.scrollY
+    if((oldY - currentY) < 0) {
+      isDown = true
+    } else {
+      isDown = false
+    }
+    oldY = currentY
+  }, 250))
+
+  $("article img").each(function() {
+      var strA = "<a data-fancybox='gallery' href='" + this.src + "'></a>";
+      $(this).wrapAll(strA);
+  });
+
+  $('.toc-link').each(function() {
+      var href = $(this).attr("href");
+      
+      inView(href).on('exit', () => {
+        if (isDown) {
+          handleActive(href)
+        }
+      })
+
+      inView(href).on('enter', () => {
+        if (!isDown) {
+          handleActive(href)
+        }
+      })
+
+      this.onclick = function(e) {
+        var pos = $(href).offset().top - 10;
+        $("html,body").animate({scrollTop: pos}, 300);
+        setTimeout(() => {
+          handleActive(href)
+        }, 350)
+        return false
+      }
+  })
+
+  function handleActive(href) {
+    document.querySelectorAll('.toc-link').forEach(elm => {
+      elm.classList.remove('active')
+    })
+    document.querySelector(".toc [href='"+ href +"']").classList.add('active')
+  }
+</script>
+
+<script src="/lib/jquery.fancybox.min.js"></script>
+
+
+
+</body>
+</html>
