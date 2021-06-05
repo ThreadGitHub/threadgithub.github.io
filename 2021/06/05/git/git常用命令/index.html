@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+    <link rel="icon" href="">
+  
+    
+  <title>git常用命令 | Thread丶</title>
+  
+<link rel="stylesheet" href="/style.css">
+
+  
+<link rel="stylesheet" href="/lib/jquery.fancybox.min.css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <header>
+  <div class="header-container">
+    <a class='logo' href="/">
+      <span>Thread丶</span>
+    </a>
+    <ul class="right-header">
+      
+        <li class="nav-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/about" class="item-link">关于</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/archives" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/tags" class="item-link">标签</a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  <main id='post'>
+  <div class="content">
+    <article>
+        <section class="content markdown-body">
+          <h1>git常用命令</h1>
+          <div class='post-meta'>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2021年06月05日</time>
+            
+              | <i class="fa fa-folder-open-o" aria-hidden="true"></i> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BB%A3%E7%A0%81%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/">代码版本控制</a>
+  </div>
+
+
+
+            
+            
+              | 
+                  <i class="fa fa-tag" aria-hidden="true"></i>
+                
+               
+  <a href="/tags/#git" class='tag'>git</a>
+
+
+            
+          </div>
+          <h3 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">该命令执行完后会在当前目录生成一个 .git 目录。</span><br><span class="line">使用我们指定目录作为Git仓库。</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="git-init-文件夹名"><a href="#git-init-文件夹名" class="headerlink" title="git init [文件夹名]"></a>git init [文件夹名]</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">初始化后，会在 newrepo 目录下会出现一个名为 .git 的目录，</span><br><span class="line">所有 Git 需要的数据和资源都存放在这个目录中。</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="git-add-文件名"><a href="#git-add-文件名" class="headerlink" title="git add [文件名]"></a>git add [文件名]</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">添加提交文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/06/05/git/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%87.png"></p>
+<h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看仓库提交文件状态</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/06/05/git/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%872.png"></p>
+<h3 id="git-commit-m-‘提交说明’"><a href="#git-commit-m-‘提交说明’" class="headerlink" title="git commit -m [‘提交说明’]"></a>git commit -m [‘提交说明’]</h3><p><img src="/2021/06/05/git/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%873.png"></p>
+<h3 id="git-clone-git-url地址"><a href="#git-clone-git-url地址" class="headerlink" title="git clone  [git url地址]"></a>git clone  [git url地址]</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">我们使用 git clone 从现有 Git 仓库中拷贝项目（类似 svn checkout）。</span><br><span class="line">如果我们需要克隆到指定的目录，可以使用以下命令格式：</span><br><span class="line">git clone &lt;repo&gt; &lt;directory&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-log-name-status"><a href="#git-log-name-status" class="headerlink" title="git log - -name-status"></a>git log - -name-status</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看当前分支的全部提交记录以及修改</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/06/05/git/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%874.png"></p>
+<h3 id="git-reset-–hard-commitID"><a href="#git-reset-–hard-commitID" class="headerlink" title="git reset –hard [commitID]"></a>git reset –hard [commitID]</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">切换修改记录</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/06/05/git/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%875.png"></p>
+<h3 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Git提供了一个命令git reflog，该命令按照之前经过的所有的commit路径按序来排列，</span><br><span class="line">用来记录你的每一次命令当切换了分支修改记录以后 </span><br><span class="line">git log里就看不到当前修改之前的修改了</span><br><span class="line">通过这个记录的命令里可以找到最新的提交的id </span><br><span class="line">再通过这个id 切换回来</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/06/05/git/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%876.png"></p>
+<h3 id="git-show-commitID"><a href="#git-show-commitID" class="headerlink" title="git show [commitID]"></a>git show [commitID]</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">列出这一次修改的全部文件修改的内容</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/06/05/git/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%877.png"></p>
+
+        </section>
+    </article>
+    
+        
+  </div>
+  <aside>
+    
+    <div class="toc-container">
+        <h1>目录</h1>
+        <div class="content">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-init"><span class="toc-number">1.</span> <span class="toc-text">git init</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-init-%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8D"><span class="toc-number">2.</span> <span class="toc-text">git init [文件夹名]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-add-%E6%96%87%E4%BB%B6%E5%90%8D"><span class="toc-number">3.</span> <span class="toc-text">git add [文件名]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-status"><span class="toc-number">4.</span> <span class="toc-text">git status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit-m-%E2%80%98%E6%8F%90%E4%BA%A4%E8%AF%B4%E6%98%8E%E2%80%99"><span class="toc-number">5.</span> <span class="toc-text">git commit -m [‘提交说明’]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-clone-git-url%E5%9C%B0%E5%9D%80"><span class="toc-number">6.</span> <span class="toc-text">git clone  [git url地址]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-log-name-status"><span class="toc-number">7.</span> <span class="toc-text">git log - -name-status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-%E2%80%93hard-commitID"><span class="toc-number">8.</span> <span class="toc-text">git reset –hard [commitID]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reflog"><span class="toc-number">9.</span> <span class="toc-text">git reflog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-show-commitID"><span class="toc-number">10.</span> <span class="toc-text">git show [commitID]</span></a></li></ol>
+        </div>
+    </div>
+    
+  </aside>
+</main>
+
+
+
+  <footer>
+  <div class="copyright">
+    <div>
+      &copy; 2021 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>&nbsp
+    </div>
+    <div>
+      Theme by <a href="https://github.com/lewis-geek/hexo-theme-Aath" target="_blank">Aath</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="/lib/in-view.min.js"></script>
+
+
+<script src="/lib/lodash.min.js"></script>
+
+<script>
+  var isDown = true
+  var oldY = 0
+  inView.offset(50)
+
+  document.body.addEventListener('touchstart', function(){});
+  
+  window.addEventListener('scroll', _.throttle(e => {
+    var currentY = window.scrollY
+    if((oldY - currentY) < 0) {
+      isDown = true
+    } else {
+      isDown = false
+    }
+    oldY = currentY
+  }, 250))
+
+  $("article img").each(function() {
+      var strA = "<a data-fancybox='gallery' href='" + this.src + "'></a>";
+      $(this).wrapAll(strA);
+  });
+
+  $('.toc-link').each(function() {
+      var href = $(this).attr("href");
+      
+      inView(href).on('exit', () => {
+        if (isDown) {
+          handleActive(href)
+        }
+      })
+
+      inView(href).on('enter', () => {
+        if (!isDown) {
+          handleActive(href)
+        }
+      })
+
+      this.onclick = function(e) {
+        var pos = $(href).offset().top - 10;
+        $("html,body").animate({scrollTop: pos}, 300);
+        setTimeout(() => {
+          handleActive(href)
+        }, 350)
+        return false
+      }
+  })
+
+  function handleActive(href) {
+    document.querySelectorAll('.toc-link').forEach(elm => {
+      elm.classList.remove('active')
+    })
+    document.querySelector(".toc [href='"+ href +"']").classList.add('active')
+  }
+</script>
+
+<script src="/lib/jquery.fancybox.min.js"></script>
+
+
+
+</body>
+</html>
