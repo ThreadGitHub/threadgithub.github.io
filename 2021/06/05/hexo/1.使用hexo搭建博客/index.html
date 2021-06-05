@@ -10,7 +10,7 @@
     <link rel="icon" href="">
   
     
-  <title>使用hexo搭建博客 | Thread丶</title>
+  <title>使用hexo搭建静态博客 | Thread丶</title>
   
 <link rel="stylesheet" href="/style.css">
 
@@ -60,9 +60,9 @@
   <div class="content">
     <article>
         <section class="content markdown-body">
-          <h1>使用hexo搭建博客</h1>
+          <h1>使用hexo搭建静态博客</h1>
           <div class='post-meta'>
-            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2021年06月04日</time>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2021年06月05日</time>
             
               | <i class="fa fa-folder-open-o" aria-hidden="true"></i> 
   <div class="article-category">
@@ -77,17 +77,18 @@
                   <i class="fa fa-tag" aria-hidden="true"></i>
                 
                
-  <a href="/tags/#GithubPages-hexo" class='tag'>GithubPages-hexo</a>
+  <a href="/tags/#hexo" class='tag'>hexo</a>
 
 
             
           </div>
-          <h5 id="需要的环境"><a href="#需要的环境" class="headerlink" title="需要的环境"></a>需要的环境</h5><p>git 和 nodejs  </p>
-<h5 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+          <h4 id="准备一个-GitHub账号"><a href="#准备一个-GitHub账号" class="headerlink" title="准备一个 GitHub账号"></a>准备一个 GitHub账号</h4><p>1.首先我们需要新建一个存储博客的代码仓库，名称格式是固定的：[github用户名].github.io 。在仓库的 settings 里 有个 Pages选项，可以看到博客访问地址是<a target="_blank" rel="noopener" href="https://threadgithub.github.io/">https://threadgithub.github.io/</a>，当然刚新建的仓库是没有任何内容的可能访问不成功。</p>
+<img src="/2021/06/05/hexo/1.%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605134056042.png" alt="image-20210605134056042" style="zoom: 80%;">
 
-<p><strong>abc</strong></p>
-<h5 id="创建博客"><a href="#创建博客" class="headerlink" title="创建博客"></a>创建博客</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog	<span class="comment">#初始化hexo项目</span></span><br><span class="line">npm install   	<span class="comment">#安装所有依赖模块</span></span><br></pre></td></tr></table></figure>
-
+<p>2.如果你有自己的域名，可以配置默认的转发域名去替换掉 github给我们提供的访问域名。</p>
+<p>在pages选项下方有 Custom domain设置，输入自己的域名保存就可以。</p>
+<p>如果想启用HTTPS下面有个强制启用HTTPS的选项勾上就可以，这个还是很实用的。配置域名需要注意的点就是要设置域名的A地址指向threadgithub.github.io你的访问域名的ip地址，这里可以用 cmd ping来取一下设置。</p>
+<p><img src="/2021/06/05/hexo/1.%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605134637752.png" alt="image-20210605134637752"></p>
 
         </section>
     </article>
@@ -99,7 +100,7 @@
     <div class="toc-container">
         <h1>目录</h1>
         <div class="content">
-            <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">需要的环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Hexo"><span class="toc-number">2.</span> <span class="toc-text">安装 Hexo</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="toc-number">3.</span> <span class="toc-text">创建博客</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E4%B8%80%E4%B8%AA-GitHub%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.</span> <span class="toc-text">准备一个 GitHub账号</span></a></li></ol>
         </div>
     </div>
     
