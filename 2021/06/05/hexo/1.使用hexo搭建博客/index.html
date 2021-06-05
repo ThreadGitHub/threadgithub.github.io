@@ -82,13 +82,29 @@
 
             
           </div>
-          <h4 id="准备一个-GitHub账号"><a href="#准备一个-GitHub账号" class="headerlink" title="准备一个 GitHub账号"></a>准备一个 GitHub账号</h4><p>1.首先我们需要新建一个存储博客的代码仓库，名称格式是固定的：[github用户名].github.io 。在仓库的 settings 里 有个 Pages选项，可以看到博客访问地址是<a target="_blank" rel="noopener" href="https://threadgithub.github.io/">https://threadgithub.github.io/</a>，当然刚新建的仓库是没有任何内容的可能访问不成功。</p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Hexo - 采用Node.js开发的一个快速、简单和强大的博客框架。</p>
+<p>目前github上的pages功能是支持搭建一个静态的博客，所以需要hexo这种静态博客工具，去把我们写的markdown文档结合着对应的hexo主题去把静态的博客去生成出来，发布到github仓库上去。供其他人去访问，github博客支持自定义域名设置十分方便。</p>
+<h3 id="准备一个-GitHub账号"><a href="#准备一个-GitHub账号" class="headerlink" title="准备一个 GitHub账号"></a>准备一个 GitHub账号</h3><h4 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h4><p>首先我们需要新建一个存储博客的代码仓库，名称格式是固定的：[github用户名].github.io 。在仓库的 settings 里 有个 Pages选项，可以看到博客访问地址是<a target="_blank" rel="noopener" href="https://threadgithub.github.io/">https://threadgithub.github.io/</a>，当然刚新建的仓库是没有任何内容的可能访问不成功。</p>
 <img src="/2021/06/05/hexo/1.%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605134056042.png" alt="image-20210605134056042" style="zoom: 80%;">
 
-<p>2.如果你有自己的域名，可以配置默认的转发域名去替换掉 github给我们提供的访问域名。</p>
-<p>在pages选项下方有 Custom domain设置，输入自己的域名保存就可以。</p>
-<p>如果想启用HTTPS下面有个强制启用HTTPS的选项勾上就可以，这个还是很实用的。配置域名需要注意的点就是要设置域名的A地址指向threadgithub.github.io你的访问域名的ip地址，这里可以用 cmd ping来取一下设置。</p>
+<h4 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h4><p>pages选项最下方有 自定义域名设置，把自己的域名输入进去保存就可以，设置了以后你会发现在仓库中生成了一个CNAME文件，文件中的内容就是你输入的自定义域名，所以也可以直接增加CNAME文件进行设置。如果想启用HTTPS下面有个强制启用HTTPS的选项勾上就可以，这个还是很实用的。</p>
+<p>配置域名需要注意的点就是要<strong>设置域名的DNS配置</strong>，A记录指向threadgithub.github.io你的访问域名的ip地址。</p>
 <p><img src="/2021/06/05/hexo/1.%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605134637752.png" alt="image-20210605134637752"></p>
+<h2 id="创建hexo博客项目"><a href="#创建hexo博客项目" class="headerlink" title="创建hexo博客项目"></a>创建hexo博客项目</h2><h3 id="需要环境"><a href="#需要环境" class="headerlink" title="需要环境"></a>需要环境</h3><p>nodejs，git</p>
+<p>因为Hexo是nodejs开发的一套博客框架，所以需要你先安装nodejs的环境。因为要绑定github推送和拉取仓库所以git也是必不可少的。</p>
+<h3 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g    	<span class="comment">#安装hexo</span></span><br><span class="line">hexo init blog			<span class="comment">#hexo创建模板博客项目</span></span><br><span class="line"><span class="built_in">cd</span> blog				<span class="comment">#进到项目目录</span></span><br><span class="line">npm install			<span class="comment">#安装全部包依赖</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看一下文件结构：</p>
+<p>​        <strong>source：</strong>存放博客文章markdown内容</p>
+<p>​       <strong>themes</strong>：主题文件</p>
+<p>​       <strong>node_modules</strong>：node install 加载的依赖模块</p>
+<p>​      <strong>_config.yml</strong>：博客整体配置</p>
+<p><img src="/2021/06/05/hexo/1.%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605142501876.png" alt="image-20210605142501876"></p>
+<h3 id="启动博客"><a href="#启动博客" class="headerlink" title="启动博客"></a>启动博客</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s <span class="comment">#启动博客服务 </span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/06/05/hexo/1.%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605143328917.png" alt="image-20210605143328917"></p>
+<p>这时候就可以<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a>在浏览器访问了：</p>
+<p><img src="/2021/06/05/hexo/1.%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605143510893.png" alt="image-20210605143510893"></p>
 
         </section>
     </article>
@@ -100,7 +116,7 @@
     <div class="toc-container">
         <h1>目录</h1>
         <div class="content">
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E4%B8%80%E4%B8%AA-GitHub%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.</span> <span class="toc-text">准备一个 GitHub账号</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E4%B8%80%E4%B8%AA-GitHub%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.1.</span> <span class="toc-text">准备一个 GitHub账号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">1.1.1.</span> <span class="toc-text">创建仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%9F%9F%E5%90%8D"><span class="toc-number">1.1.2.</span> <span class="toc-text">配置域名</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.</span> <span class="toc-text">创建hexo博客项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E7%8E%AF%E5%A2%83"><span class="toc-number">2.1.</span> <span class="toc-text">需要环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.2.</span> <span class="toc-text">初始化项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%8D%9A%E5%AE%A2"><span class="toc-number">2.3.</span> <span class="toc-text">启动博客</span></a></li></ol></li></ol>
         </div>
     </div>
     
