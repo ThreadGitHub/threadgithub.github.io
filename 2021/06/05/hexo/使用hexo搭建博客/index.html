@@ -228,7 +228,7 @@
         <div class="article-content markdown-body">
             <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Hexo - 采用Node.js开发的一个快速、简单和强大的博客框架。</p>
 <p>目前github上的pages功能是支持搭建一个静态的博客，所以需要hexo这种静态博客工具，去把我们写的markdown文档结合着对应的hexo主题去把静态的博客去生成出来，发布到github仓库上去。供其他人去访问，github博客支持自定义域名设置十分方便。</p>
-<h3 id="准备一个-GitHub账号"><a href="#准备一个-GitHub账号" class="headerlink" title="准备一个 GitHub账号"></a>准备一个 GitHub账号</h3><h4 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h4><p>首先我们需要新建一个存储博客的代码仓库，名称格式是固定的：[github用户名].github.io 。在仓库的 settings 里 有个 Pages选项，可以看到博客访问地址是<a target="_blank" rel="noopener" href="https://threadgithub.github.io/">https://threadgithub.github.io/</a>，当然刚新建的仓库是没有任何内容的可能访问不成功。</p>
+<h3 id="准备一个-GitHub账号"><a href="#准备一个-GitHub账号" class="headerlink" title="准备一个 GitHub账号"></a>准备一个 GitHub账号</h3><h4 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h4><p>首先我们需要新建一个存储博客的代码仓库，名称格式是固定的：[github用户名].github.io 。在仓库的 settings 里 有个 Pages选项，可以看到博客访问地址是<a class="link" target="_blank" rel="noopener" href="https://threadgithub.github.io/">https://threadgithub.github.io/<i class="fas fa-external-link-alt"></i></a>，当然刚新建的仓库是没有任何内容的可能访问不成功。</p>
 <img src="/2021/06/05/hexo/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605134056042.png" alt="image-20210605134056042" style="zoom: 80%;">
 
 <h4 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h4><p>pages选项最下方有 自定义域名设置，把自己的域名输入进去保存就可以，设置了以后你会发现在仓库中生成了一个CNAME文件，文件中的内容就是你输入的自定义域名，所以也可以直接增加CNAME文件进行设置。如果想启用HTTPS下面有个强制启用HTTPS的选项勾上就可以，这个还是很实用的。</p>
@@ -247,7 +247,7 @@
 <h3 id="启动博客"><a href="#启动博客" class="headerlink" title="启动博客"></a>启动博客</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s <span class="comment">#启动博客服务 </span></span><br></pre></td></tr></table></figure>
 
 <p><img src="/2021/06/05/hexo/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605143328917.png" alt="image-20210605143328917"></p>
-<p>这时候就可以<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a>在浏览器访问了：</p>
+<p>这时候就可以<a class="link" target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000<i class="fas fa-external-link-alt"></i></a>在浏览器访问了：</p>
 <p><img src="/2021/06/05/hexo/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605143510893.png" alt="image-20210605143510893"></p>
 <h3 id="增加文章"><a href="#增加文章" class="headerlink" title="增加文章"></a>增加文章</h3><h4 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h4><p>会在 blog/source/_posts 文件夹下创建一个叫 测试文章.md的markdown文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 测试文章</span><br></pre></td></tr></table></figure>
@@ -260,7 +260,7 @@
 <p><img src="/2021/06/05/hexo/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605153113931.png" alt="image-20210605153113931"></p>
 <p><img src="/2021/06/05/hexo/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605153150346.png" alt="image-20210605153150346"></p>
 <h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><h4 id="克隆主题"><a href="#克隆主题" class="headerlink" title="克隆主题"></a>克隆主题</h4><p>可能默认的主题不能满足我们的需要，这时候可以更换主题</p>
-<p>选择主题可以去Hexo的中文官网去选择 ，点击可以预览并且查看Demo。<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
+<p>选择主题可以去Hexo的中文官网去选择 ，点击可以预览并且查看Demo。<a class="link" target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/<i class="fas fa-external-link-alt"></i></a></p>
 <p><img src="/2021/06/05/hexo/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605150342676.png" alt="image-20210605150342676"></p>
 <p>这里选择第一个主题，并且克隆到 blog/themes 主题文件夹下。</p>
 <p><img src="/2021/06/05/hexo/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/image-20210605150523886.png" alt="image-20210605150523886"></p>

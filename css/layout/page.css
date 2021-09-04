@@ -58,8 +58,8 @@ keep-mobile()
   position: fixed;
   top: 0;
   bottom: 0;
-  left: -260px;
-  width: 260px;
+  left: -370px;
+  width: 370px;
   height: 100%;
   z-index: $z-index-6;
   overflow-y: auto;
